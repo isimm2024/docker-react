@@ -15,9 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.dev --tag ing2isimm2024/sysnetadmin:dev ; docker build . --file Dockerfile --tag ing2isimm2024/sysnetadmin:prod ; echo "sys/net-admin" | docker login -u "ing2isimm2024" --password-stdin ; docker push ing2isimm2024/sysnetadmin:dev; docker push ing2isimm2024/sysnetadmin:prod  
-      
-
+      run: docker build --target builder --tag ing2isimm2024/sysnetadmin:builder  . ; docker build . --tag ing2isimm2024/sysnetadmin:prod  
 
 
 
