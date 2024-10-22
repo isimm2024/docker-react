@@ -10,6 +10,13 @@ COPY . .
 CMD ["npm", "run", "build"]
 
 
-FROM nginx
+FROM node:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
-CMD ["nginx"]
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
